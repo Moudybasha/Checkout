@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>CheckoutCart.Services</AssemblyName>
+    <RootNamespace>CheckoutCart.Services</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Checkout.Data.Model.Core\CheckoutCart.Data.Model.Core.csproj" />
+    <ProjectReference Include="..\Checkout.Data.Model\CheckoutCart.Data.Model.csproj" />
+    <ProjectReference Include="..\CheckoutCart.DataContract\CheckoutCart.DataContract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config\jsconfig1.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

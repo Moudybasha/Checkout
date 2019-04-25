@@ -1,0 +1,8 @@
+{
+  "steps": [
+    {
+      "from": "CheckAvailability",
+      "to": "NewItemProcessor"
+    }
+  ]
+}
