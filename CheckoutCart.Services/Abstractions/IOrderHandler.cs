@@ -1,4 +1,5 @@
 ﻿using CheckoutCart.DataContract;
+using CheckoutCart.DataContract.RequestEntities;
 
 namespace CheckoutCart.Services.Abstractions
 {
@@ -6,11 +7,11 @@ namespace CheckoutCart.Services.Abstractions
     {
         void AddToCart(CartItemEntity cartItem);
 
-        void DeleteCartItem(CartItemUpdateEntity cartItemId);
+        void DeleteCartItem(CartItemUpdateEntity cartItemUpdateId);
         void ClearCart(long userId);
 
        
 
-        void ModifyCartItem(CartItemUpdateEntity cartItem);
+        void ModifyCartItem(CartItemUpdateEntity cartItemUpdate);
     }
 }

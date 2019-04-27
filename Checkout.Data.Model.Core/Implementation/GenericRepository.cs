@@ -190,7 +190,7 @@ namespace CheckoutCart.Data.Model.Core.Implementation
         /// <returns></returns>
         public void Delete(Expression<Func<TEntity, bool>> where)
         {
-            IQueryable<TEntity> objects = DbSet.Where(where).AsQueryable().AsNoTracking();
+            IQueryable<TEntity> objects = DbSet.Where(where).AsQueryable();
             foreach (TEntity obj in objects)
                 DbSet.Remove(obj);
         }

@@ -5,8 +5,6 @@ namespace Checkout.CrossCutting.Core.ServiceLocator
 {
     /// <summary>
     ///     Provides a type-safe implementation of
-    ///     <see cref="M:Syngenta.CLP.CrossCutting.ServiceLocator.IServiceLocator.GetService(System.Type)" /> and
-    ///     <see cref="M:Syngenta.CLP.CrossCutting.ServiceLocator.IServiceLocator.GetServices(System.Type)" />.
     /// </summary>
     public static class ServiceLocatorExtensions
     {

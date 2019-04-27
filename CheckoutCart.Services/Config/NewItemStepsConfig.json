@@ -1,8 +1,8 @@
 {
   "steps": [
     {
-      "from": "CheckAvailability",
-      "to": "NewItemProcessor"
+      "from": "CheckoutCart.Services.Implementation.NewItem.NewItemProductAvailabilityProcessor",
+      "to": "CheckoutCart.Services.Implementation.NewItem.NewItemProcessor"
     }
   ]
 }

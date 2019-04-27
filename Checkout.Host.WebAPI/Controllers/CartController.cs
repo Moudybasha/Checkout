@@ -1,52 +1,62 @@
-﻿using System.Web.Http;
-using CheckoutCart.Data.Model.Core.Implementation;
-using CheckoutCart.Data.Model.ShoppingCartModels;
-using CheckoutCart.DataContract;
-using CheckoutCart.Services.Abstractions;
-using CheckoutCart.Services.Implementation;
+﻿using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using CheckoutCart.DataContract.RequestEntities;
+using CheckoutCart.DataContract.ResponseEntities;
+using CheckoutCart.Services.Implementation.ClearCart;
+using CheckoutCart.Services.Implementation.DeleteItem;
+using CheckoutCart.Services.Implementation.NewItem;
+using CheckoutCart.Services.Implementation.UpdateItem;
 
 namespace CheckoutCart.Host.WebAPI.Controllers
 {
-   [RoutePrefix("api/cart")]
+    [RoutePrefix("api/cart")]
     public class CartController : ApiController
     {
-        private readonly IOrderHandler _handler;
+        private readonly DeleteItemBaseProcessor _deleteItemProcessor;
+        private readonly NewItemBaseProcessor _newItemProcessor;
+        private readonly UpdateItemBaseProcessor _updateItemProcessor;
+        private readonly ClearCartBaseProcessor _clearCartProcessor;
 
-        public CartController()
+        public CartController(DeleteItemBaseProcessor deleteItemProcessor, NewItemBaseProcessor newItemProcessor,
+            UpdateItemBaseProcessor updateItemProcessor, ClearCartBaseProcessor clearCartProcessor)
         {
-            _handler = new OrderHandler(new UnitOfWork(new CheckOutCartEntities()));
+            _deleteItemProcessor = deleteItemProcessor;
+            _newItemProcessor = newItemProcessor;
+            _updateItemProcessor = updateItemProcessor;
+            _clearCartProcessor = clearCartProcessor;
         }
+
         // GET: Cart
         [Route("item")]
         [HttpPost]
-        public void AddToCart(CartItemEntity cartItem)
+        public ShoppingCartResponse AddToCart(CartItemEntity cartItem)
         {
-            _handler.AddToCart(cartItem);
+            return _newItemProcessor.Process(cartItem);
         }
 
         [Route("item")]
         [HttpPut]
-        public void ModifyCartItem(CartItemUpdateEntity cartItem)
+        public ShoppingCartResponse ModifyCartItem(CartItemUpdateEntity cartItemUpdate)
         {
-            _handler.ModifyCartItem(cartItem);
+           return _updateItemProcessor.Process(cartItemUpdate);
         }
 
         [HttpDelete]
         [Route("item")]
-        public void DeleteCartItem(CartItemUpdateEntity cartItem)
+        public HttpResponseMessage DeleteCartItem(CartItemUpdateEntity cartItemUpdate)
         {
-            _handler.DeleteCartItem(cartItem);
+            _deleteItemProcessor.Process(cartItemUpdate);
+            return new HttpResponseMessage(HttpStatusCode.Accepted);
         }
-        
+
         [HttpDelete]
-        public void ClearCart(string userName)
+        public HttpResponseMessage ClearCart(long userId)
         {
-
+            _clearCartProcessor.Process(userId);
+            return new HttpResponseMessage(HttpStatusCode.Accepted);
         }
 
-        public void GetShoppingCartItems(string userName)
-        {
-
-        }
+        
     }
 }

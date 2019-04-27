@@ -1,9 +1,8 @@
 ﻿using System;
 using CheckoutCart.Data.Model.Core.Abstraction;
 using CheckoutCart.Data.Model.ShoppingCartModels;
-using CheckoutCart.DataContract;
+using CheckoutCart.DataContract.RequestEntities;
 using CheckoutCart.Services.Abstractions;
-using CheckoutCart.Services.Implementation.NewItemProcessor;
 
 namespace CheckoutCart.Services.Implementation
 {
@@ -20,19 +19,19 @@ namespace CheckoutCart.Services.Implementation
         {
             #region Refactoring
 
-            //if (!CheckStockAvailability(cartItem.ProductId, cartItem.Count))
+            //if (!CheckStockAvailability(cartItemUpdate.ProductId, cartItemUpdate.Quantity))
             //    throw new Exception(); //TODO: Add custom exception
 
-            //var cart = CheckExistingCart(cartItem.UserId);
+            //var cart = CheckExistingCart(cartItemUpdate.UserId);
             //if (cart == null)
             //{
-            //    cart = Mapper.Map(cartItem);
-            //    cart.CartItems.Add(new CartItem {ProductId = cartItem.ProductId, Quantity = cartItem.Count});
+            //    cart = MapperHelper.Map(cartItemUpdate);
+            //    cart.CartItems.Add(new CartItem {ProductId = cartItemUpdate.ProductId, Quantity = cartItemUpdate.Quantity});
             //    _unitOfWork.RepositoryFactory<ShoppingCart>().Insert(cart);
             //}
             //else
             //{
-            //    cart.CartItems.Add(new CartItem {ProductId = cartItem.ProductId, Quantity = cartItem.Count});
+            //    cart.CartItems.Add(new CartItem {ProductId = cartItemUpdate.ProductId, Quantity = cartItemUpdate.Quantity});
             //    _unitOfWork.RepositoryFactory<ShoppingCart>().Update(cart);
             //}
 
@@ -40,19 +39,19 @@ namespace CheckoutCart.Services.Implementation
 
             #endregion
 
-            AddToCartBaseProcessor cart = new CheckAvailability(_unitOfWork).SetNextStep(new NewItemProcessor.NewItemProcessor(_unitOfWork));
-
-            cart.Process(cartItem);
+//            AddToCartBaseProcessor cart = new CheckAvailability(_unitOfWork).SetNextStep(new NewItemProcessor.NewItemProcessor(_unitOfWork));
+//
+//            cart.Process(cartItemUpdate);
 
         }
 
-        public void DeleteCartItem(CartItemUpdateEntity cartItem)
+        public void DeleteCartItem(CartItemUpdateEntity cartItemUpdate)
         {
             //TODO: handle adding product count
-            var product = new Product {Id = cartItem.ProductId};
+            var product = new Product {Id = cartItemUpdate.ProductId};
             _unitOfWork.RepositoryFactory<Product>().Attach(product);
 
-            product.AvailabilityCount += cartItem.Count;
+            product.AvailabilityCount += cartItemUpdate.Quantity;
 
             _unitOfWork.RepositoryFactory<Product>().Update(product);
             _unitOfWork.Save();
@@ -64,20 +63,20 @@ namespace CheckoutCart.Services.Implementation
             _unitOfWork.RepositoryFactory<ShoppingCart>().Delete(cart => cart.UserId == userId);
         }
 
-        public void ModifyCartItem(CartItemUpdateEntity cartItems)
+        public void ModifyCartItem(CartItemUpdateEntity cartItemsUpdate)
         {
-            var existingCartItem = _unitOfWork.RepositoryFactory<CartItem>().Get(c => c.Id == cartItems.CartItemId);
-            if (cartItems.Count > existingCartItem.Quantity)
+            var existingCartItem = _unitOfWork.RepositoryFactory<CartItem>().Get(c => c.Id == cartItemsUpdate.CartItemId);
+            if (cartItemsUpdate.Quantity > existingCartItem.Quantity)
             {
                 var isAvailable =
-                    CheckStockAvailability(cartItems.ProductId, cartItems.Count - existingCartItem.Quantity);
+                    CheckStockAvailability(cartItemsUpdate.ProductId, cartItemsUpdate.Quantity - existingCartItem.Quantity);
                 if (!isAvailable)
                     throw new Exception();
             }
 
-            existingCartItem.Quantity = cartItems.Count;
+            existingCartItem.Quantity = cartItemsUpdate.Quantity;
             existingCartItem.Product.AvailabilityCount =
-                Math.Abs(existingCartItem.Product.AvailabilityCount - cartItems.Count);
+                Math.Abs(existingCartItem.Product.AvailabilityCount - cartItemsUpdate.Quantity);
             _unitOfWork.RepositoryFactory<CartItem>().Update(existingCartItem);
             _unitOfWork.Save();
         }

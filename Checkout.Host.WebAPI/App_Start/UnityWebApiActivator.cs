@@ -1,5 +1,5 @@
 using System.Web.Http;
-
+using CheckoutCart.Host.WebAPI.InstanceProviders;
 using Unity.AspNet.WebApi;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CheckoutCart.Host.WebAPI.UnityWebApiActivator), nameof(CheckoutCart.Host.WebAPI.UnityWebApiActivator.Start))]
@@ -17,8 +17,9 @@ namespace CheckoutCart.Host.WebAPI
         /// </summary>
         public static void Start() 
         {
+            Container.Init();
            
-            var resolver = new UnityDependencyResolver(UnityConfig.Container);
+            var resolver = new UnityDependencyResolver(Container.Current);
              
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
