@@ -57,20 +57,7 @@ To know How to use this prototype, refer to the client demo console application 
 This Section will demonstrate how the different cycles covered in this prototype
 
 ## 1.1 Add New Item E2E Cycle Flow-Chart
-```mermaid
-graph TD
-A(Start) --> B[New Cart Item]
-B --> C[Check Product Quantity]
-C --> D{is product available}
-D --Yes--> G{is there an existing cart}
-G --Yes--> F[Add the new item to the cart]
-G --No--> H[Create new Cart]
-H --> F
-F --> I(End)
-D --No--> I
-```
 
-![Alt text](./charts/1.svg)
 <img src="./charts/1.svg">
 
 ## 1.2 Add New Item E2E Cycle Details:
@@ -83,17 +70,7 @@ D --No--> I
  6. If there is no existing cart for the user, a new cart will be created and then the new item will be added to the created cart.
  
 ## 2.1 Update Item E2E Cycle Flow-Chart
-```mermaid
-graph LR
-A(Start) --> B[Get exsiting Item]
-B --> C{ New item quantity > exsiting item quantity ?}
-C --Yes--> D{is the difference available}
-D --No--> Y
-D --Yes--> E[Update item quantity]
-E --> F[Update product availability]
-C--No--> E
-F --> Y(End) 
-```
+<img src="./charts/2.svg">
 
 ## 2.2 Update Item E2E Cycle Details:
 1.  Update cart item API invoked `PUT api/item/cart` with all required details about the item that will be updated.
