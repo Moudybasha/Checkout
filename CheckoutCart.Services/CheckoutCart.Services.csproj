@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\IOrderHandler.cs" />
     <Compile Include="Config\ConfigModel.cs" />
     <Compile Include="CustomExceptions\ProductNotAvailableException.cs" />
     <Compile Include="Enums\CartStatus.cs" />
@@ -68,7 +67,6 @@
     <Compile Include="Implementation\NewItem\NewItemBaseProcessor.cs" />
     <Compile Include="Implementation\NewItem\NewItemProductAvailabilityProcessor.cs" />
     <Compile Include="Implementation\NewItem\NewItemProcessor.cs" />
-    <Compile Include="Implementation\OrderHandler.cs" />
     <Compile Include="Implementation\UpdateItem\UpdateItemProductAvailabilityProcessor.cs" />
     <Compile Include="Implementation\UpdateItem\UpdateItemBaseProcessor.cs" />
     <Compile Include="Implementation\UpdateItem\UpdateItemProcessor.cs" />

@@ -17,7 +17,6 @@ namespace Checkout.CrossCutting.Framework.ServiceLocator
         public object GetService(Type serviceType)
         {
             return _unitContainer.Resolve(serviceType);
-            
         }
 
         public object GetService(Type serviceType, string name)

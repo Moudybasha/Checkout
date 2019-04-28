@@ -16,6 +16,16 @@ namespace CheckoutCart.Services.Implementation.NewItem
             _unitOfWork = ServiceLocatorFactory.CurrentFactory.Create().GetService<IUnitOfWork>();
         }
 
+        /// <summary>
+        ///     Process adding new Item to cart
+        /// </summary>
+        /// <remarks>
+        ///     There is two scenarios for this:
+        ///     1. Either there is no active shopping cart, then a new cart will be created with the new item.
+        ///     2. or there is an active shopping cart, then the new item will be added to the same cart.
+        /// </remarks>
+        /// <param name="cartItem"></param>
+        /// <returns></returns>
         public override ShoppingCartResponse Process(CartItemEntity cartItem)
         {
             var cart = CheckExistingCart(cartItem.UserId);
@@ -36,6 +46,11 @@ namespace CheckoutCart.Services.Implementation.NewItem
             return MapperHelper.Map(cart);
         }
 
+        /// <summary>
+        ///     Gets the existing shopping cart
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>The Shopping cart that has In Progress status</returns>
         private ShoppingCart CheckExistingCart(long userId)
         {
             return _unitOfWork.RepositoryFactory<ShoppingCart>()

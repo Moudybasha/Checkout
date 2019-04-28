@@ -9,8 +9,6 @@ namespace Checkout.CrossCutting.Core.Logging
     {
         #region Members
 
-        private static ILoggerFactory _currentLogFactory;
-
         #endregion
 
         #region Public Properties
@@ -21,7 +19,7 @@ namespace Checkout.CrossCutting.Core.Logging
         /// <value>
         ///     The current log factory.
         /// </value>
-        public static ILoggerFactory CurrentLogFactory => _currentLogFactory;
+        public static ILoggerFactory CurrentLogFactory { get; private set; }
 
         #endregion
 
@@ -34,8 +32,7 @@ namespace Checkout.CrossCutting.Core.Logging
         /// <exception cref="System.ArgumentNullException">logFactory</exception>
         public static void SetCurrent(ILoggerFactory logFactory)
         {
-         
-            _currentLogFactory = logFactory ?? throw new ArgumentNullException(nameof(logFactory));
+            CurrentLogFactory = logFactory ?? throw new ArgumentNullException(nameof(logFactory));
         }
 
         /// <summary>

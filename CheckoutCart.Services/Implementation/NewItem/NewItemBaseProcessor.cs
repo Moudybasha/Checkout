@@ -5,6 +5,9 @@ using CheckoutCart.Services.Config;
 
 namespace CheckoutCart.Services.Implementation.NewItem
 {
+    /// <summary>
+    ///     Base processor for Adding new Item to shopping cart
+    /// </summary>
     public abstract class NewItemBaseProcessor
     {
         private NewItemBaseProcessor _nextStep;
@@ -16,6 +19,9 @@ namespace CheckoutCart.Services.Implementation.NewItem
             SetNextStep();
         }
 
+        /// <summary>
+        ///     Sets the next step for the current step
+        /// </summary>
         private void SetNextStep()
         {
             var nextStepAssembly = Steps.Steps.FirstOrDefault(s => s.From == GetType().FullName)?.To;
@@ -23,6 +29,11 @@ namespace CheckoutCart.Services.Implementation.NewItem
             _nextStep = Helper.GetNextStep<NewItemBaseProcessor>(nextStepAssembly);
         }
 
+        /// <summary>
+        ///     Process the next step of the current step if any
+        /// </summary>
+        /// <param name="cartItem"></param>
+        /// <returns></returns>
         public virtual ShoppingCartResponse Process(CartItemEntity cartItem)
         {
             return _nextStep?.Process(cartItem);

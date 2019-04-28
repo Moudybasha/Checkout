@@ -9,13 +9,11 @@ namespace Checkout.CrossCutting.Core.ServiceLocator
     {
         #region Members
 
-        private static IServiceLocatorFactory _currentFactory;
-
         #endregion
 
         #region public members
 
-        public static IServiceLocatorFactory CurrentFactory => _currentFactory;
+        public static IServiceLocatorFactory CurrentFactory { get; private set; }
 
         #endregion
 
@@ -28,7 +26,7 @@ namespace Checkout.CrossCutting.Core.ServiceLocator
         /// <exception cref="System.ArgumentNullException">factory</exception>
         public static void SetCurrent(IServiceLocatorFactory factory)
         {
-            _currentFactory = factory ?? throw new ArgumentNullException(nameof(factory));
+            CurrentFactory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         /// <summary>

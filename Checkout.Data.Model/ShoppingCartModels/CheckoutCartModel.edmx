@@ -63,7 +63,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CartItems_ShoppingCarts">
-          <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="1" />
+          <End Role="ShoppingCarts" Type="Self.ShoppingCarts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CartItems" Type="Self.CartItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ShoppingCarts">

@@ -6,14 +6,11 @@ namespace Checkout.CrossCutting.Core.Configuration
     {
         #region Members
 
-        /// CodeReview: change to private static property to improve unit test compliance.
-        private static IConfigurationFactory _currentFactory;
-
         #endregion
 
         #region public members
 
-        public static IConfigurationFactory CurrentFactory => _currentFactory;
+        public static IConfigurationFactory CurrentFactory { get; private set; }
 
         #endregion
 
@@ -26,7 +23,7 @@ namespace Checkout.CrossCutting.Core.Configuration
         /// <exception cref="System.ArgumentNullException">ConfigurationFactory</exception>
         public static void SetCurrent(IConfigurationFactory factory)
         {
-            _currentFactory = factory ?? throw new ArgumentNullException(nameof(factory));
+            CurrentFactory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         /// <summary>
@@ -36,7 +33,8 @@ namespace Checkout.CrossCutting.Core.Configuration
         /// <exception cref="System.InvalidOperationException">Factory is null, You must first set current factory.</exception>
         public static IConfiguration CreateConfiguration()
         {
-            if (null == CurrentFactory) throw new InvalidOperationException("Factory is null, You must first set current factory.");
+            if (null == CurrentFactory)
+                throw new InvalidOperationException("Factory is null, You must first set current factory.");
             return CurrentFactory.Create();
         }
 

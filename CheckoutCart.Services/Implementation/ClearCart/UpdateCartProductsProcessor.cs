@@ -18,18 +18,27 @@ namespace CheckoutCart.Services.Implementation.ClearCart
         {
             var shoppingCart = GetShoppingCart(userId);
 
-            ModifyProduct(shoppingCart);
+            UpdateProductQuantity(shoppingCart);
 
             base.Process(userId);
         }
 
+        /// <summary>
+        ///     Get the shopping cart of specific user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         private ShoppingCart GetShoppingCart(long userId)
         {
             return _unitOfWork.RepositoryFactory<ShoppingCart>().Get(c =>
-                c.UserId == userId && c.ShoppingCartStatu.Status == CartStatus.InProgress.ToString());
+                c.UserId == userId && c.ShoppingCartStatu.Status == CartStatus.InProgress.ToString(), false);
         }
 
-        private void ModifyProduct(ShoppingCart shoppingCart)
+        /// <summary>
+        ///     Updates the product quantity for each cart item in the shopping cart
+        /// </summary>
+        /// <param name="shoppingCart"></param>
+        private void UpdateProductQuantity(ShoppingCart shoppingCart)
         {
             var cartItems = shoppingCart.CartItems;
             foreach (var cartItem in cartItems)
@@ -40,6 +49,8 @@ namespace CheckoutCart.Services.Implementation.ClearCart
             }
 
             _unitOfWork.Save();
+            // DeAttach the cartItems from the context to be able to delete based on cascade delete
+            _unitOfWork.RepositoryFactory<CartItem>().DeAttach(cartItems);
         }
     }
 }

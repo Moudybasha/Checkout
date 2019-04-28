@@ -51,6 +51,7 @@ namespace CheckoutCart.Host.WebAPI.Controllers
         }
 
         [HttpDelete]
+        [Route("{userId}")]
         public HttpResponseMessage ClearCart(long userId)
         {
             _clearCartProcessor.Process(userId);

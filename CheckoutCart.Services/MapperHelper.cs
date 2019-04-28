@@ -3,7 +3,6 @@ using CheckoutCart.Data.Model.ShoppingCartModels;
 using CheckoutCart.DataContract.RequestEntities;
 using CheckoutCart.DataContract.ResponseEntities;
 
-
 namespace CheckoutCart.Services
 {
     public static class MapperHelper
@@ -19,10 +18,16 @@ namespace CheckoutCart.Services
         {
             return new ShoppingCart
             {
-                UserId = cartItem.UserId,
+                UserId = cartItem.UserId
             };
         }
 
+
+        /// <summary>
+        ///     Map ShoppingCart database object to ShoppingCart response object
+        /// </summary>
+        /// <param name="shoppingCart">database object that will be mapped</param>
+        /// <returns>ShoppingCartResponse object</returns>
         public static ShoppingCartResponse Map(ShoppingCart shoppingCart)
         {
             return Mapper.Map<ShoppingCartResponse>(shoppingCart);

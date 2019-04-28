@@ -10,17 +10,17 @@ namespace Checkout.CrossCutting.Core.ServiceLocator
     {
         public static TService GetService<TService>(this IServiceLocator serviceLocator)
         {
-            return (TService) serviceLocator.GetService(typeof (TService));
+            return (TService) serviceLocator.GetService(typeof(TService));
         }
 
-        public static TService GetService<TService>(this IServiceLocator serviceLocator,string name)
+        public static TService GetService<TService>(this IServiceLocator serviceLocator, string name)
         {
-            return (TService)serviceLocator.GetService(typeof(TService),name);
+            return (TService) serviceLocator.GetService(typeof(TService), name);
         }
 
         public static IEnumerable<TService> GetServices<TService>(this IServiceLocator serviceLocator)
         {
-            return serviceLocator.GetServices(typeof (TService)).Cast<TService>();
+            return serviceLocator.GetServices(typeof(TService)).Cast<TService>();
         }
     }
 }

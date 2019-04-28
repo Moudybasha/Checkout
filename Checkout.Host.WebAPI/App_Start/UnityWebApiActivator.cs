@@ -29,7 +29,7 @@ namespace CheckoutCart.Host.WebAPI
         /// </summary>
         public static void Shutdown()
         {
-            UnityConfig.Container.Dispose();
+            Container.Current.Dispose();
         }
     }
 }

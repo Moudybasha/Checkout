@@ -16,6 +16,11 @@ namespace CheckoutCart.Services.Implementation.UpdateItem
             _unitOfWork = ServiceLocatorFactory.CurrentFactory.Create().GetService<IUnitOfWork>();
         }
 
+        /// <summary>
+        ///     Updates the cartItem
+        /// </summary>
+        /// <param name="cartItemUpdate"></param>
+        /// <returns></returns>
         public override ShoppingCartResponse Process(CartItemUpdateEntity cartItemUpdate)
         {
             ExistingCartItem.Product.AvailabilityCount

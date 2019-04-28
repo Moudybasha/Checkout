@@ -2,7 +2,7 @@
 
 namespace Checkout.CrossCutting.Core.Logging
 {
-    //You can implement this contrat with several frameworks.
+    //You can implement this contract with several frameworks.
     // .NET Diagnostics API, EntLib, Log4Net,NLog, Enterpise Library etc.
     // Logger.Write(new LogEntry()) in EntLib, or LogManager.GetLog("logger-
     public interface ILogger

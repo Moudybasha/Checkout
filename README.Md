@@ -1,3 +1,4 @@
+
 # Checkout Cart ProtoType
 [![Download .Net Framework](https://img.shields.io/badge/.Net%20Framework-%3E=%20v4.7.2-blue.svg)](https://dotnet.microsoft.com/download/dotnet-framework/net472) [![Download VS 2017](https://img.shields.io/badge/visual--studio-2017-blue.svg)](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15) [![Download SQL Server 2017](https://img.shields.io/badge/MS--SQL--Server---2017-blue.svg)](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express)
 
@@ -16,13 +17,17 @@ In this section, we will explain how we see the shopping cart from our perspecti
 
 ## Business Terminologies:
 ### Shopping Cart Status:
-Shopping Cart status define if this shopping cart has turned to be an order or not. If the status = ** In Progress** this means that the user still able to add/remove/update or even clear the basket because it still not turned to an order.
+Shopping Cart status define if this shopping cart has turned to be an order or not. If the status = **In Progress** this means that the user still able to add/remove/update or even clear the basket because it still not turned to an order.
 ### Cart Item
 Shopping cart divided into one or more of **Cart Item(s)**, each **Cart Item** represent the quantity of specific product.
 *Example*: If a customer select to buy **3 Adidas Sneaker** , this means that we have a Cart Item of this product with **Quantity = 3**
 
 ## Assumptions:
 If **Shopping Cart** has no ** Cart Items** it will be deleted and the 
+
+## Roadmap for this Prototype
+1. Implement proper middle-ware exception handling.
+2. Implement logging component to be able to track any warning or errors.
 
 ## FAQ
 ###  Shopping Cart ? What Does this means?
@@ -47,7 +52,7 @@ These instructions will get you a copy of the project up and running on your loc
 1.  Make sure that all the required software are installed.
 2.  restore nuget packages using visual studio or by executing below script in the solution root folder 
 ```dotnet restore```
-3. Restore SQL `*.bak` file into your local SQL database server. Click [here](https://stackoverflow.com/a/30338131) for more information.
+3. Restore SQL `DB\*.bak` file into your local SQL database server. Click [here](https://stackoverflow.com/a/30338131) for more information.
 
 ## How to use:
 To know How to use this prototype, refer to the client demo console application in the solution.

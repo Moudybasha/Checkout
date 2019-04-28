@@ -10,7 +10,6 @@ namespace Checkout.CrossCutting.Framework.Configuration
         public AppSettingConfiguration(NameValueCollection appSettings)
         {
             _appSettings = appSettings;
-           
         }
 
         public string Get(string key)

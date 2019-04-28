@@ -17,6 +17,18 @@ namespace CheckoutCart.Services.Implementation.UpdateItem
             _unitOfWork = ServiceLocatorFactory.CurrentFactory.Create().GetService<IUnitOfWork>();
         }
 
+        /// <summary>
+        ///     Process updating product availability
+        /// </summary>
+        /// <remarks>
+        ///     There are two scenarios here:
+        ///     1. If the updated quantity will be updated with more quantity, then checks if the difference is exsits for this
+        ///     product.
+        ///     2. otherwise proceed to the next step
+        /// </remarks>
+        /// <param name="cartItemUpdate"></param>
+        /// <exception cref="ProductNotAvailableException"></exception>
+        /// <returns></returns>
         public override ShoppingCartResponse Process(CartItemUpdateEntity cartItemUpdate)
         {
             ExistingCartItem = _unitOfWork.RepositoryFactory<CartItem>().Get(c => c.Id == cartItemUpdate.CartItemId);
@@ -39,12 +51,23 @@ namespace CheckoutCart.Services.Implementation.UpdateItem
             return base.Process(cartItemUpdate);
         }
 
+        /// <summary>
+        ///     Gets product database object
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         private Product GetProduct(long productId)
         {
             return _unitOfWork.RepositoryFactory<Product>()
                 .Get(c => c.Id == productId, false);
         }
 
+        /// <summary>
+        ///     Checks if the the product is available or not
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         private bool IsProductAvailable(Product product, long quantity)
         {
             return product.AvailabilityCount >= quantity;

@@ -278,6 +278,15 @@ namespace CheckoutCart.Data.Model.Core.Implementation
             return DbSet.Any(any);
         }
 
+        public void DeAttach(TEntity entity)
+        {
+            Context.Entry(entity).State = EntityState.Detached;
+        }
+
+        public void DeAttach(IEnumerable<TEntity> entities)
+        {
+           entities.ToList().ForEach(e=> Context.Entry(e).State = EntityState.Detached);
+        }
         #endregion
     }
 }

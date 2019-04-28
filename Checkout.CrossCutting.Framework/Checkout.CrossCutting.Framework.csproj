@@ -102,8 +102,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Serializer\Serializer.cs" />
-    <Compile Include="Serializer\DotNetSerializerFactory.cs" />
     <Compile Include="Configuration\AppSettingConfiguration.cs" />
     <Compile Include="Configuration\AppSettingConfigurationFactory.cs" />
     <Compile Include="Logging\Common\AbstractLogger.cs" />
@@ -117,8 +115,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator\UnityServiceLocator.cs" />
     <Compile Include="ServiceLocator\UnityServiceLocatorFactory.cs" />
-    <Compile Include="Validator\DataAnnotationsEntityValidator.cs" />
-    <Compile Include="Validator\DataAnnotationsEntityValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
