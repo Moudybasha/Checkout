@@ -70,6 +70,9 @@ F --> I(End)
 D --No--> I
 ```
 
+![Alt text](./controllers_brief.svg)
+<img src="./charts/test.svg">
+
 ## 1.2 Add New Item E2E Cycle Details:
 
  1. New cart item API invoked `POST api/item/cart` with all required details about the item that will be inserted.
