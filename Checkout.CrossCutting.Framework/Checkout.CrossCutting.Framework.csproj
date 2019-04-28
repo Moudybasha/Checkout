@@ -96,7 +96,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logging\Appenders\ElmahAppender.cs" />
     <Compile Include="Resources\StringResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,14 +103,6 @@
     </Compile>
     <Compile Include="Configuration\AppSettingConfiguration.cs" />
     <Compile Include="Configuration\AppSettingConfigurationFactory.cs" />
-    <Compile Include="Logging\Common\AbstractLogger.cs" />
-    <Compile Include="Logging\Common\LoggingException.cs" />
-    <Compile Include="Logging\Common\LogLevel.cs" />
-    <Compile Include="Logging\Log4NetConfigurationLoader.cs" />
-    <Compile Include="Logging\Log4NetLogger.cs" />
-    <Compile Include="Logging\Log4NetLoggerFactory.cs" />
-    <Compile Include="Logging\TraceSourceLogger.cs" />
-    <Compile Include="Logging\TraceSourceLoggerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator\UnityServiceLocator.cs" />
     <Compile Include="ServiceLocator\UnityServiceLocatorFactory.cs" />
