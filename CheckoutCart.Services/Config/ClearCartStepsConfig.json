@@ -1,8 +1,0 @@
-{
-  "steps": [
-    {
-      "from": "CheckoutCart.Services.Implementation.ClearCart.UpdateCartProductsProcessor",
-      "to": "CheckoutCart.Services.Implementation.ClearCart.DeleteCartProcessor"
-    }
-  ]
-}

@@ -1,0 +1,8 @@
+{
+  "steps": [
+    {
+      "from": "CheckoutCart.Services.Implementation.DeleteItem.UpdateItemProductProcessor",
+      "to": "CheckoutCart.Services.Implementation.DeleteItem.DeleteItemProcessor"
+    }
+  ]
+}

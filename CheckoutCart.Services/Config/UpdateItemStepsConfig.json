@@ -1,8 +1,0 @@
-{
-  "steps": [
-    {
-      "from": "CheckoutCart.Services.Implementation.UpdateItem.UpdateItemProductAvailabilityProcessor",
-      "to": "CheckoutCart.Services.Implementation.UpdateItem.UpdateItemProcessor"
-    }
-  ]
-}
