@@ -58,11 +58,11 @@ This Section will demonstrate how the different cycles covered in this prototype
 
 ## 1.1 Add New Item E2E Cycle Flow-Chart
 ```mermaid
-graph LR
+graph TD
 A(Start) --> B[New Cart Item]
 B --> C[Check Product Quantity]
 C --> D{is product available}
-D --Yes--> G{is there an exsiting cart}
+D --Yes--> G{is there an existing cart}
 G --Yes--> F[Add the new item to the cart]
 G --No--> H[Create new Cart]
 H --> F
