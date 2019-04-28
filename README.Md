@@ -81,15 +81,8 @@ This Section will demonstrate how the different cycles covered in this prototype
 6. The processor then will be update the product availability in stock and the new quantity for the item.
 
 ## 3.1 Delete Cart Item E2E Cycle Flow-Chart
-```mermaid
-graph LR
-A(start)--> B[Update Product quantity]
-B --> C{Only one item in cart}
-C --Yes--> D[Delete Entire Cart]
-D -- No --> E[Delete Item]
-D --> Y(End)
-E --> Y(End)
-```
+<img src="./charts/3.svg">
+
 ## 3.2 Delete Cart Item E2E Cycle Details
 1.  Delete cart item API invoked `DELETE api/item/cart` with all required details about the item that will be deleted.
 2. The payload will be passed to **Delete Item** processor.
@@ -99,13 +92,7 @@ E --> Y(End)
 6. If no, only the cart item will be deleted.
 
 ## 4.1 Clear Cart E2E Cycle Flow-Chart
-```mermaid
-graph LR
-A(Start) --> B[Get the current shopping cart]
-B --> C[Update Cart products availability]
-C --> D[Delete Cart]
-D --> Y(End)
-```
+<img src="./charts/4.svg">
 
 ## 4.2 Clear Cart E2E Cycle Flow-Chart
 1. Delete cart item API invoked `DELETE api/cart/{userId}` 
