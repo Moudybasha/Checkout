@@ -70,8 +70,8 @@ F --> I(End)
 D --No--> I
 ```
 
-![Alt text](./controllers_brief.svg)
-<img src="./charts/test.svg">
+![Alt text](./charts/1.svg)
+<img src="./charts/1.svg">
 
 ## 1.2 Add New Item E2E Cycle Details:
 
